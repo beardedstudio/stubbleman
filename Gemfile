@@ -7,7 +7,6 @@ gem "middleman", "~>3.3.11"
 gem "middleman-livereload", "~> 3.1.0"
 gem "middleman-patterns", "~> 0.2"
 gem "haml"
-gem "breakpoint"
 gem "puma"
 
 # For faster file watcher updates on Windows:

@@ -1,0 +1,21 @@
+@mixin clearfix {
+  overflow: hidden;
+  *zoom: 1;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+@mixin pie-clearfix {
+  *zoom: 1;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.pie-clearfix {
+  @include pie-clearfix;
+}
