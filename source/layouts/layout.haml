@@ -1,0 +1,38 @@
+-# Depending on where you are (homepage or 'internal' page), assign a class to the body element
+- bodyclass = (current_path == "index.html") ? 'home' : 'internal'
+!!! 5
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+%html.no-js{ :lang => "en" }
+  <!--<![endif]-->
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %title
+      = current_page.data.title || "Site Name"
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "keywords"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    = stylesheet_link_tag 'main'
+    / = javascript_include_tag 'vendor/modernizr.js'
+    / :javascript
+    /   /*! grunt-grunticon Stylesheet Loader - v2.0.0-beta.5 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+    /   (function(e){function t(t,n,r,o){"use strict";function a(){for(var e,n=0;u.length>n;n++)u[n].href&&u[n].href.indexOf(t)>-1&&(e=!0);e?i.media=r||"all":setTimeout(a)}var i=e.document.createElement("link"),c=n||e.document.getElementsByTagName("script")[0],u=e.document.styleSheets;return i.rel="stylesheet",i.href=t,i.media="only x",i.onload=o||function(){},c.parentNode.insertBefore(i,c),a(),i}var n=function(r,o){"use strict";if(r&&3===r.length){var a=e.navigator,i=e.Image,c=!(!document.createElementNS||!document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||e.opera&&-1===a.userAgent.indexOf("Chrome")||-1!==a.userAgent.indexOf("Series40")),u=new i;u.onerror=function(){n.method="png",t(r[2])},u.onload=function(){var e=1===u.width&&1===u.height,a=r[e&&c?0:e?1:2];n.method=e&&c?"svg":e?"datapng":"png",n.href=a,t(a,null,null,o)},u.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",document.documentElement.className+=" grunticon"}};n.loadCSS=t,e.grunticon=n})(this);
+    /   grunticon(["/assets/grunticon/prod/icons.data.svg.css", "/assets/grunticon/prod/icons.data.png.css", "/assets/grunticon/prod/icons.fallback.css"], grunticon.svgLoadedCallback);
+    / <script src="//use.typekit.net/euj2jlf.js"></script>
+    / <script>try{Typekit.load();}catch(e){}</script>
+    / %noscript
+    /   %link{:href => "/assets/grunticon/prod/icons.fallback.css", :rel => "stylesheet"}
+  %body{:class => bodyclass}
+
+    = partial "partials/_site-header"
+
+    %main.main-content{role: 'main'}
+      .container
+        = yield
+
+    = partial "partials/_site-footer"
+
+    = javascript_include_tag 'all.js'
