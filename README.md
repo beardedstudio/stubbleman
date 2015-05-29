@@ -1,5 +1,5 @@
-# stubbleman
-A Middleman Project Template with Stubble Integration
+# Stubbleman
+## A Middleman Project Template with Stubble Integration.
 
 This is an opinionated [Middleman](http://middlemanapp.com) template to get the team at [Bearded](http://bearded.com) building static sites quickly.
 
@@ -7,7 +7,7 @@ It encourages third-party asset management via [Bower](http://bower.io), and inc
 
 It also enables Bearded's [Middleman Patterns](https://github.com/beardedstudio/middleman-patterns) by default.
 
-## Features
+### Features
 * Sass
 * Haml
 * Bower for package management
@@ -16,7 +16,7 @@ It also enables Bearded's [Middleman Patterns](https://github.com/beardedstudio/
 * LiveReload
 * A `Procfile`, `Rakefile`, and `config.ru` for easy deployment to [Heroku][http://heroku.com]
 
-## Installation
+### Installation
 1. Clone (or download) this repository to: `~/.middleman/stubbleman`
 
 	`git clone git@github.com:beardedstudio/stubbleman ~/.middleman/stubbleman`
@@ -25,7 +25,7 @@ It also enables Bearded's [Middleman Patterns](https://github.com/beardedstudio/
 	`middleman init my_project --template=stubbleman`
 3. You'll need to have [Bower](http://bower.io) installed to grab the third party asset packages. Then, run `bower install`.
 
-## Updating
+### Updating
 Once Stubbleman is in your `~/.middleman` directory, you can just pull the repository periodically to stay up-to-date!
 ```
 cd ~/.middleman/stubbleman
