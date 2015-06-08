@@ -14,7 +14,7 @@ It also enables Bearded's [Middleman Patterns](https://github.com/beardedstudio/
 * Modernizr
 * Middleman Patterns
 * LiveReload
-* A `Procfile`, `Rakefile`, and `config.ru` for easy deployment to [Heroku][http://heroku.com]
+* A `Procfile`, `Rakefile`, and `config.ru` for easy deployment to [Heroku](http://heroku.com)
 
 ### Installation
 1. Clone (or download) this repository to: `~/.middleman/stubbleman`
