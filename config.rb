@@ -57,6 +57,14 @@ after_configuration do
   sprockets.append_path File.join "#{root}", @bower_config["directory"]
 end
 
+# Autoprefixer configuration
+activate :autoprefixer do |config|
+  config.browsers = ['last 2 versions', 'Explorer >= 9']
+  config.cascade  = false
+  config.inline   = true
+  # config.ignore   = ['hacks.css']
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment

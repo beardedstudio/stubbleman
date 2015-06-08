@@ -6,6 +6,7 @@ ruby '2.0.0'
 gem "middleman", "~>3.3.11"
 gem "middleman-livereload", "~> 3.1.0"
 gem "middleman-patterns", "~> 0.2"
+gem "middleman-autoprefixer"
 gem "haml"
 gem "puma"
 
