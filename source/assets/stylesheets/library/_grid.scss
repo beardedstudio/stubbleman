@@ -19,6 +19,20 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
   margin: auto;
   max-width: $max-width;
   *zoom: 1;
+
+  @include breakpoint($breakpoint-s) {
+    width: 85%;
+  }
+
+  @include breakpoint($breakpoint-l) {
+    width: 95%;
+  }
+
+  @if $legacy-support-for-ie8 {
+    // give IE8 a fixed-width!
+    max-width: 75em;
+    width: 75em;
+  }
 }
 
 @function column_width($num) {
@@ -53,25 +67,25 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
 }
 
 @mixin last-col2 {
-  &:nth-of-type(1n) {
-    margin-right: $gutter-width;
-    .lt-ie8 & {
-      margin-right: $gutter_width - 0.25%;
-    }
-    float: left;
-    clear: none;
+  margin-right: $gutter-width;
+  .lt-ie8 & {
+    margin-right: $gutter_width - 0.25%;
   }
-  &:nth-of-type(2n+2) {
+  float: left;
+  clear: none;
+
+  &.last-col-2, &.last-col-4, &.last-col-6, &.last-col-8, &.last-col-10, &.last-col-12 {
     @include last;
     float: right;
   }
-  &:nth-of-type(2n+3) {
+
+  &.last-col-3, &.last-col-5, &.last-col-7, &.last-col-9, &.last-col-11, &.last-col-1 {
     clear: both;
   }
 }
 
 @mixin last-col3 {
-  &:nth-of-type(1n) {
+  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
     margin-right: $gutter-width;
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
@@ -79,17 +93,18 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
     float: left;
     clear: none;
   }
-  &:nth-of-type(3n+3) {
+
+  &.last-col-3, &.last-col-6, &.last-col-9, &.last-col-12 {
     @include last;
     float: right;
   }
-  &:nth-of-type(3n+4) {
+  &.last-col-4, &.last-col-7, &.last-col-10, &.last-col-1 {
     clear: both;
   }
 }
 
 @mixin last-col4 {
-  &:nth-of-type(1n) {
+  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
     margin-right: $gutter-width;
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
@@ -97,17 +112,18 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
     float: left;
     clear: none;
   }
-  &:nth-of-type(4n+4) {
+
+  &.last-col-4, &.last-col-8, &.last-col-12 {
     @include last;
     float: right;
   }
-  &:nth-of-type(4n+5) {
+  &.last-col-5, &.last-col-9, &.last-col-1 {
     clear: both;
   }
 }
 
 @mixin last-col6 {
-  &:nth-of-type(1n) {
+  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
     margin-right: $gutter-width;
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
@@ -115,11 +131,12 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
     float: left;
     clear: none;
   }
-  &:nth-of-type(6n+6) {
+
+  &.last-col-6, &.last-col-12 {
     @include last;
     float: right;
   }
-  &:nth-of-type(6n+7) {
+  &.last-col-7, &.last-col-1 {
     clear: both;
   }
 }
