@@ -1,0 +1,18 @@
+@include breakpoint-set('to ems',true);
+
+// override if you want to provide a fixed-width stylesheet
+$legacy-support-for-ie8: false;
+
+//it's ok to put px values in here if you've set "to ems" to "true"!
+
+$breakpoint-xxs: 280px;
+$breakpoint-xs: 400px;
+$breakpoint-s: 500px;
+$breakpoint-m: 600px;
+$breakpoint-l: 700px;
+$breakpoint-nav: $breakpoint-l;
+$breakpoint-xl: 960px;
+$breakpoint-xxl: 1100px;
+
+// media query for hi-resolution displays
+$breakpoint-hi-res: 2 device-pixel-ratio;
