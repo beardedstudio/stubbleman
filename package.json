@@ -4,7 +4,7 @@
   "description": "",
   "author": "Bearded <info@bearded.com>",
   "scripts": {
-    "icons": "babel-node tasks/icons.js",
+    "icons": "rimraf source/assets/grunticon/production/* && babel-node tasks/icons.js",
     "modernizr": "rimraf source/javascripts/vendor/modernizr.js && babel-node tasks/build-modernizr.js"
   },
   "devDependencies": {
