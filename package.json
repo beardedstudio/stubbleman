@@ -1,9 +1,10 @@
 {
   "name": "",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "",
   "author": "Bearded <info@bearded.com>",
   "scripts": {
+    "icons": "babel-node tasks/icons.js",
     "modernizr": "rimraf source/javascripts/vendor/modernizr.js && babel-node tasks/build-modernizr.js"
   },
   "devDependencies": {
@@ -11,14 +12,9 @@
     "babel-core": "^6.5.2",
     "bower": "^1.5.2",
     "fs-extra": "^0.26.5",
-    "grunt": "^0.4.5",
-    "grunt-grunticon": "^2.2.2",
-    "load-grunt-tasks": "^3.2.0",
+    "grunticon-lib": "^1.0.4",
     "modernizr": "^3.3.1",
     "nodemon": "^1.8.1",
     "rimraf": "^2.5.2"
-  },
-  "dependencies": {
-    "grunt-cli": "^0.1.13"
   }
 }
