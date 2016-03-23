@@ -5,14 +5,22 @@ $legacy-support-for-ie8: false;
 
 //it's ok to put px values in here if you've set "to ems" to "true"!
 
-$breakpoint-xxs: 280px;
-$breakpoint-xs: 400px;
-$breakpoint-s: 500px;
-$breakpoint-m: 600px;
-$breakpoint-l: 700px;
-$breakpoint-nav: $breakpoint-l;
-$breakpoint-xl: 960px;
-$breakpoint-xxl: 1100px;
+$bp-xxs: 280px;
+$bp-xs: 400px;
+$bp-s: 500px;
+$bp-m: 600px;
+
+//use when you are not changing the styles based on navigation or sidebar
+$bp-l: 700px; 
+
+//only use contextually with navigation switches from desktop to mobile
+$bp-nav: $bp-l;
+
+//only use contextually with sidebar switches
+$bp-sidebar: $bp-l;
+$bp-xl: 960px;
+$bp-xxl: 1100px;
+$bp-full: 1400px;
 
 // media query for hi-resolution displays
 $breakpoint-hi-res: 2 device-pixel-ratio;
