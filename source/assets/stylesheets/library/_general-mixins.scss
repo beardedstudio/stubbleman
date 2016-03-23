@@ -51,6 +51,7 @@
   background-color: $link-color;
   &:hover,
   &:focus {
+    outline: 0;
     text-decoration: none;
     background-color: $link-color-hover;
     color: $background-color;

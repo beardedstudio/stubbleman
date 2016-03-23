@@ -7,7 +7,7 @@
     display: inline-block;
     float: left;
 
-    @include breakpoint($breakpoint-xxl) {
+    @include breakpoint($bp-xxl) {
       @include heading-2;
       padding-top: 0.5em;
     }

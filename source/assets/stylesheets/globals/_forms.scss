@@ -10,6 +10,7 @@ button[type="submit"] {
   @include button-form;
 }
 
+input[type="search"],
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -74,7 +75,7 @@ form .input {
 
 .two-up-wider {
   @include clearfix;
-  @include breakpoint($breakpoint-s) {
+  @include breakpoint($bp-s) {
     > .input {
       @include column(6);
       margin-right: 0;
@@ -103,14 +104,14 @@ form .input {
     // general input is the city
     .input {
       @include column(7);
-      @include breakpoint($breakpoint-s) {
+      @include breakpoint($bp-s) {
         @include column(6);
       }
       // first child is the zip
       &:first-child {
         @include column(12);
         @include last;
-        @include breakpoint($breakpoint-s) {
+        @include breakpoint($bp-s) {
           @include column(3);
         }
       }
@@ -119,7 +120,7 @@ form .input {
       &.select, .state {
         @include column(5);
         @include last;
-        @include breakpoint($breakpoint-s) {
+        @include breakpoint($bp-s) {
           @include column(3);
           @include last;
         }
@@ -132,7 +133,7 @@ form .input {
   @include clearfix;
 
   .input {
-    @include breakpoint($breakpoint-s) {
+    @include breakpoint($bp-s) {
       @include column(4);
       margin-right: 0;
       margin-left: $gutter-width;

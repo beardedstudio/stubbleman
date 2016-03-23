@@ -20,11 +20,11 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
   max-width: $max-width;
   *zoom: 1;
 
-  @include breakpoint($breakpoint-s) {
+  @include breakpoint($bp-s) {
     width: 85%;
   }
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($bp-l) {
     width: 95%;
   }
 
@@ -67,76 +67,105 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
 }
 
 @mixin last-col2 {
-  margin-right: $gutter-width;
-  .lt-ie8 & {
-    margin-right: $gutter_width - 0.25%;
-  }
-  float: left;
-  clear: none;
+  &:nth-of-type(1n) {
+    margin-right: $gutter-width;
+    float: left;
+    clear: none;
 
-  &.last-col-2, &.last-col-4, &.last-col-6, &.last-col-8, &.last-col-10, &.last-col-12 {
+    .lt-ie8 & {
+      margin-right: $gutter_width - 0.25%;
+    }
+  }
+
+  &:nth-of-type(2n+2) {
     @include last;
     float: right;
   }
 
-  &.last-col-3, &.last-col-5, &.last-col-7, &.last-col-9, &.last-col-11, &.last-col-1 {
+  &:nth-of-type(2n+3) {
     clear: both;
   }
 }
 
 @mixin last-col3 {
-  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
+  &:nth-of-type(1n) {
     margin-right: $gutter-width;
+    float: left;
+    clear: none;
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
     }
-    float: left;
-    clear: none;
   }
 
-  &.last-col-3, &.last-col-6, &.last-col-9, &.last-col-12 {
+  &:nth-of-type(3n+3) {
     @include last;
     float: right;
   }
-  &.last-col-4, &.last-col-7, &.last-col-10, &.last-col-1 {
+
+  &:nth-of-type(3n+4) {
     clear: both;
   }
 }
 
 @mixin last-col4 {
-  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
+  &:nth-of-type(1n) {
     margin-right: $gutter-width;
+    float: left;
+    clear: none;
+
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
     }
-    float: left;
-    clear: none;
   }
 
-  &.last-col-4, &.last-col-8, &.last-col-12 {
+  &:nth-of-type(4n+4) {
     @include last;
     float: right;
   }
-  &.last-col-5, &.last-col-9, &.last-col-1 {
+
+  &:nth-of-type(4n+5) {
+    clear: both;
+  }
+}
+
+@mixin last-col5 {
+  &:nth-of-type(1n) {
+    margin-right: $gutter-width;
+    float: left;
+    clear: none;
+
+    .lt-ie8 & {
+      margin-right: $gutter_width - 0.25%;
+    }
+  }
+
+  &:nth-of-type(5n+5) {
+    @include last;
+    float: right;
+  }
+
+  &:nth-of-type(5n+6) {
     clear: both;
   }
 }
 
 @mixin last-col6 {
-  &.last-col-1, &.last-col-2, &.last-col-3, &.last-col-4, &.last-col-5, &.last-col-6, &.last-col-7, &.last-col-8, &.last-col-9, &.last-col-10, &.last-col-11, &.last-col-12 {
+  &:nth-of-type(1n) {
     margin-right: $gutter-width;
+    float: left;
+    clear: none;
+
     .lt-ie8 & {
       margin-right: $gutter_width - 0.25%;
     }
-    float: left;
-    clear: none;
   }
 
-  &.last-col-6, &.last-col-12 {
+  &:nth-of-type(6n+6) {
     @include last;
     float: right;
   }
-  &.last-col-7, &.last-col-1 {
+
+  &:nth-of-type(6n+7) {
     clear: both;
   }
 }
@@ -154,4 +183,92 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
 
 .grid-inset {
   @include grid-inset;
+}
+
+////// Flexbox Grid Mixins
+
+@mixin flex-col1 {
+  margin-bottom: 2px;
+  @include no-flex-fallback {
+    margin-bottom:0.75em;
+    flex-basis: auto;
+  }
+}
+
+@mixin flex-col2 {
+  flex-basis: calc(50% - 1px);
+  margin-right: 2px;
+  margin-bottom: 2px;
+
+  &:nth-of-type(1n) {
+    margin-right: 2px;
+  }
+
+  &:nth-of-type(2n) {
+    margin-right: 0;
+  }
+
+  @include no-flex-fallback {
+    @include column(6);
+    @include last-col2;
+    margin-bottom:0.75em;
+    flex-basis: auto;
+  }
+
+  @include flex-tweener-fallback {
+    flex-basis: auto;
+    width: calc(50% - 1px);
+  }
+}
+
+@mixin flex-col3 {
+  flex-basis: calc(33.33333% - 1.33333px);
+  margin-right: 2px;
+  margin-bottom: 2px;
+
+  &:nth-of-type(1n) {
+    margin-right: 2px;
+  }
+  
+  &:nth-of-type(3n) {
+    margin-right: 0;
+  }
+
+  @include no-flex-fallback {
+    @include column(4);
+    @include last-col3;
+    margin-bottom:0.75em;
+    flex-basis: auto;
+  }
+
+  @include flex-tweener-fallback {
+    flex-basis: auto;
+    width: calc(33.33333% - 1.33333px);
+  }
+}
+
+@mixin flex-col4 {
+  flex-basis: calc(25% - 1.5px);
+  margin-right: 2px;
+  margin-bottom: 2px;
+
+  &:nth-of-type(1n) {
+    margin-right: 2px;
+  }
+
+  &:nth-of-type(4n) {
+    margin-right:0;
+  }
+
+  @include no-flex-fallback {
+    @include column(3);
+    @include last-col4;
+    margin-bottom:0.75em;
+    flex-basis: auto;
+  }
+
+  @include flex-tweener-fallback {
+    flex-basis: auto;
+    width: calc(25% - 1.5px);
+  }
 }
