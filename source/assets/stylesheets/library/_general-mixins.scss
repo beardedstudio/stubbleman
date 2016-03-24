@@ -12,6 +12,12 @@
   }
 }
 
+//// use this on your grid wrapper to make everything equal height (a solution that utilizes display: flex)
+@mixin equal-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 @mixin divider-bottom {
   padding-bottom: 1em;
   border-bottom: 1px solid $border-color;
