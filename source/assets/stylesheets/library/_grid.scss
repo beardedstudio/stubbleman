@@ -55,11 +55,12 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
 }
 
 @mixin prepend($num) {
-  margin-left: column_width($num) + ($gutter_width * 2);
+  margin-left: column_width($num) + ($gutter_width);
 }
 
+///append assumes it is the last columns applied (if you need spacing in the middle, use prepend).
 @mixin append($num) {
-  margin-right: column_width($num) + ($gutter_width * 2);
+  margin-right: column_width($num);
 }
 
 @mixin last {
@@ -185,90 +186,26 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
   @include grid-inset;
 }
 
-////// Flexbox Grid Mixins
+/////Below I've made a quick way to make a perfect column grid
+//using the mixin column-grid.
+//You can only use this with layouts of 2, 3, 4, or 6 columns.
 
-@mixin flex-col1 {
-  margin-bottom: 2px;
-  @include no-flex-fallback {
-    margin-bottom:0.75em;
-    flex-basis: auto;
+@mixin last-column($num) {
+  @if $num == 2 { 
+    @include last-col6;
   }
-}
-
-@mixin flex-col2 {
-  flex-basis: calc(50% - 1px);
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  &:nth-of-type(1n) {
-    margin-right: 2px;
-  }
-
-  &:nth-of-type(2n) {
-    margin-right: 0;
-  }
-
-  @include no-flex-fallback {
-    @include column(6);
-    @include last-col2;
-    margin-bottom:0.75em;
-    flex-basis: auto;
-  }
-
-  @include flex-tweener-fallback {
-    flex-basis: auto;
-    width: calc(50% - 1px);
-  }
-}
-
-@mixin flex-col3 {
-  flex-basis: calc(33.33333% - 1.33333px);
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  &:nth-of-type(1n) {
-    margin-right: 2px;
-  }
-  
-  &:nth-of-type(3n) {
-    margin-right: 0;
-  }
-
-  @include no-flex-fallback {
-    @include column(4);
-    @include last-col3;
-    margin-bottom:0.75em;
-    flex-basis: auto;
-  }
-
-  @include flex-tweener-fallback {
-    flex-basis: auto;
-    width: calc(33.33333% - 1.33333px);
-  }
-}
-
-@mixin flex-col4 {
-  flex-basis: calc(25% - 1.5px);
-  margin-right: 2px;
-  margin-bottom: 2px;
-
-  &:nth-of-type(1n) {
-    margin-right: 2px;
-  }
-
-  &:nth-of-type(4n) {
-    margin-right:0;
-  }
-
-  @include no-flex-fallback {
-    @include column(3);
+  @else if $num == 3 { 
     @include last-col4;
-    margin-bottom:0.75em;
-    flex-basis: auto;
   }
+  @else if $num == 4 {
+    @include last-col3;
+  }
+  @else if $num == 6 {
+    @include last-col2;
+  }
+}
 
-  @include flex-tweener-fallback {
-    flex-basis: auto;
-    width: calc(25% - 1.5px);
-  }
+@mixin column-grid($num) {
+  @include column($num);
+  @include last-column($num);
 }
