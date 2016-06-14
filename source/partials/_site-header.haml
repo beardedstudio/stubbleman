@@ -1,11 +1,16 @@
 %header.site-header
   .container
-    %h1.site-name
-      Site Name
+    / Skip link should go to wherever relevant content is on your site so accessible users can skip past the navigation.
+    = link_to 'Skip to Content', '#content', :id => 'skip-nav', :class => 'screenreader-text'
 
+    %h1.site-name
+      = link_to 'Site Name', '/index.html'
+
+    / ARIA attributes here help users of assistive technology understand that the menu button controls links underneath it (the primary nav), and that as you click on it, the primary nav expands and contracts
     %section.mobile-navigation
-      %button.menu-trigger
-        %span.icon-menu
+      %button.menu-trigger{:"aria-expanded" => "false", :"aria-controls" => "primary-nav" }
+        %span.icon.icon-menu{:"aria-hidden" => "true"}
+        %span.trigger-status.screenreader-text.closed Open
         %span.trigger-text Menu
 
     = partial 'partials/primary-navigation'
