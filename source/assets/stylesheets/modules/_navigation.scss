@@ -7,7 +7,7 @@
   }
 }
 
-.menu-trigger, .utility-trigger {
+.primary-trigger, .utility-trigger {
   border: 1px solid $border-color;
   background-color: transparent;
   color: $link-color;
@@ -15,7 +15,6 @@
   padding: 0.5em;;
   margin: 0;
   width: 48%;
-  float: right;
 
   &:hover, &:focus {
     cursor: pointer;
@@ -23,11 +22,11 @@
 }
 
 .utility-trigger {
-  margin-right: 2%;
+
 }
 
-.menu-trigger {
-
+.primary-trigger {
+  margin-right: 1%;
 }
 
 .site-header .container {

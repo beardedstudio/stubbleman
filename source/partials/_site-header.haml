@@ -1,11 +1,16 @@
 %header.site-header
   .container
     %h1.site-name
-      Site Name
+      Stubbleman
 
     %section.mobile-navigation
-      %button.menu-trigger
+      %button.primary-trigger{:'aria-controls' => 'primary-navigation' }
         %span.icon-menu
         %span.trigger-text Menu
 
+      %button.utility-trigger{:'aria-controls' => 'utility-navigation' }
+        %span.icon-cog
+        %span.trigger-text Utility
+
     = partial 'partials/primary-navigation'
+    = partial 'partials/utility-navigation'

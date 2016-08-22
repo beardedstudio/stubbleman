@@ -1,113 +1,96 @@
+// Handles binding navigation menus to
+// triggers for showing / hiding
+// utility and primary navigation menus on small
+// viewport sizes.
 
-var $menuTrigger = $('.menu-trigger'),
+// Triggers are the buttons that make menus visible,
+// generally there is one per menu.
+// Menus are the actual nav items that contain lists of links.
+var $primaryTrigger = $('.primary-trigger'),
     $primaryMenu = $('.primary-navigation'),
     $utilityTrigger = $('.utility-trigger'),
     $utilityMenu = $('.utility-navigation');
 
-function toggleTriggerClass() {
-  if (!$menuTrigger.hasClass('is-active')) {
-    $menuTrigger.addClass('is-active');
-  } else {
-    $menuTrigger.removeClass('is-active');
-  }
+// toggle all visibility identifiers for given menu trigger
+function toggleTriggerVisibility(trigger) {
+  trigger.toggleClass('is-active');
+  trigger.attr("aria-hidden", (!trigger.hasClass('is-active')).toString());
 };
 
-function toggleMenuClass() {
-  if (!$primaryMenu.hasClass('is-visible')) {
-    $primaryMenu.addClass('is-visible');
-  } else {
-    $primaryMenu.removeClass('is-visible');
-  }
+// toggle all visibility identifiers for given menu
+function toggleMenuVisibility(menu) {
+  menu.toggleClass('is-visible');
+  menu.attr("aria-hidden", (!menu.hasClass('is-visible')).toString());
 }
 
+// restore original menu state
+function resetMenu(menu) {
+  menu.removeClass('is-visible')
+    .attr('aria-hidden', 'true')
+    .removeAttr('style');
+};
+
+// Restore original menu trigger state
+function resetTrigger(trigger) {
+  trigger.removeClass('is-active')
+    .attr('aria-hidden', 'true')
+    .removeAttr('style');
+};
+
+// Toggle menu visibility on menu trigger click
+// also handles visibility for utility menu
+// (only one can be open at a time)
 function toggleMenu() {
-  $menuTrigger.on("click", function(e){
-    toggleTriggerClass();
-    toggleMenuClass();
-    $primaryMenu.slideToggle("fast");
-    // if utilityMenu is NOT visible, do nothing.
-    if (!$utilityMenu.is(':visible')) {
-      return
-    } else {
-    // if utilityMenu IS visible, reset the trigger and the menu (hide menu & remove classes/events).
-      resetUtilityTrigger();
+  $primaryTrigger.on("click", function(e){
+    toggleTriggerVisibility($primaryTrigger);
+    toggleMenuVisibility($primaryMenu);
+
+    // if utilityMenu IS visible,
+    // hide it before showing the primary menu.
+    if($utilityMenu.is(':visible')){
+      resetTrigger($utilityTrigger);
       $utilityMenu.removeClass('is-visible').slideUp('fast');
     }
+
+    $primaryMenu.slideToggle("fast");
   });
 };
 
-function resetMenu() {
-  if (!$primaryMenu.hasClass('is-visible')) {
-    $primaryMenu.removeAttr('style');
-  } else {
-    $primaryMenu.removeClass('is-visible').removeAttr('style');
-  }
-};
-
-function resetMenuTrigger() {
-  if (!$menuTrigger.hasClass('is-active')) {
-    return
-  } else {
-    $menuTrigger.removeClass('is-active');
-  }
-};
-
-function toggleUtilityTriggerClass() {
-  if (!$utilityTrigger.hasClass('is-active')) {
-    $utilityTrigger.addClass('is-active');
-  } else {
-    $utilityTrigger.removeClass('is-active');
-  }
-};
-
-function toggleUtilityMenuClass() {
-  if (!$utilityMenu.hasClass('is-visible')) {
-    $utilityMenu.addClass('is-visible');
-  } else {
-    $utilityMenu.removeClass('is-visible');
-  }
-};
-
+// Toggle menu visibility on menu trigger click
+// also handles visibility for primary menu
+// (only one can be open at a time)
 function toggleUtilityMenu() {
   $utilityTrigger.on("click", function(e){
-    toggleUtilityTriggerClass();
-    toggleUtilityMenuClass();
-    $utilityMenu.slideToggle('fast');
-    // if primaryMenu is NOT visible, do nothing.
-    if (!$primaryMenu.is(':visible')) {
-      return
-    } else {
-    // if primaryMenu IS visible, reset the trigger and the menu (hide menu & remove classes/events).
-      resetMenuTrigger();
-      $primaryMenu.removeClass('is-visible').slideUp('fast');
+    toggleTriggerVisibility($utilityTrigger);
+    toggleMenuVisibility($utilityMenu);
+
+    // if primaryMenu IS visible,
+    // hide it before showing utility menu
+    if ($primaryMenu.is(':visible')) {
+      resetTrigger($primaryTrigger);
+      $primaryMenu.removeClass('is-visible')
+        .attr("aria-hidden", 'true')
+        .slideUp('fast');
     }
+
+    $utilityMenu.slideToggle('fast');
   });
-};
-
-function resetUtilityMenu() {
-  if (!$utilityMenu.hasClass('is-visible')) {
-    $utilityMenu.removeAttr('style');
-  } else {
-    $utilityMenu.removeClass('is-visible').removeAttr('style');
-  }
-};
-
-function resetUtilityTrigger() {
-  if (!$utilityTrigger.hasClass('is-active')) {
-    return
-  } else {
-    $utilityTrigger.removeClass('is-active');
-  }
 };
 
 // Fixes broken navigation when changing states on mobile then expanding to desktop
 jRes.addFunc({
   breakpoint: 'nav',
+  enter: function(){
+    $utilityMenu.attr('aria-hidden', true);
+    $primaryMenu.attr('aria-hidden', true);
+  },
   exit: function(){
-    resetUtilityTrigger();
-    resetUtilityMenu();
-    resetMenu();
-    resetMenuTrigger();
+    resetTrigger($utilityTrigger);
+    resetMenu($utilityMenu);
+    resetMenu($primaryMenu);
+    resetTrigger($primaryTrigger);
+    $utilityMenu.attr('aria-hidden', false);
+    $primaryMenu.attr('aria-hidden', false);
   }
 });
 
