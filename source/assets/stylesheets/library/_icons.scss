@@ -10,6 +10,7 @@
   @include icon-base;
 }
 
-.icon-menu {
+.icon-menu,
+.icon-search {
   @extend %icon-base;
 }
