@@ -1,5 +1,3 @@
--# Depending on where you are (homepage or 'internal' page), assign a class to the body element
-- bodyclass = (current_path == "index.html") ? 'home' : 'internal'
 !!! 5
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -17,6 +15,7 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
     = stylesheet_link_tag 'main'
     = javascript_include_tag 'vendor/modernizr.js'
+
     / :javascript
     /   (function(d) {
     /     var config = {
@@ -25,11 +24,11 @@
     /     },
     /     h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
     /   })(document);
-  %body{:class => bodyclass}
+  %body{:class => (current_path == "index.html") ? 'home' : 'internal'}
 
     = partial "partials/_site-header"
 
-    %main.main-content{role: 'main'}
+    %main.main-content
       .container
         = yield
 
