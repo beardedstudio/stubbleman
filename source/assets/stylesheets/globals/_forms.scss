@@ -29,6 +29,11 @@ textarea {
   border: 1px $border-color solid;
 }
 
+// remove the "spinner" from number fields
+input[type="number"] {
+  @include remove-spinners;
+}
+
 select {
   height: 3em;
   line-height: 2.5em;
@@ -64,10 +69,12 @@ form .input {
 
 .two-up {
   @include clearfix;
+
   > .input {
     @include column(6);
     margin-right: 0;
     margin-left: $gutter-width;
+
     &:first-child {
       margin-left: 0;
     }
@@ -77,10 +84,12 @@ form .input {
 .two-up-wider {
   @include clearfix;
   @include breakpoint($bp-s) {
+
     > .input {
       @include column(6);
       margin-right: 0;
       margin-left: $gutter-width;
+
       &:first-child {
         margin-left: 0;
       }
@@ -105,22 +114,27 @@ form .input {
     // general input is the city
     .input {
       @include column(7);
+
       @include breakpoint($bp-s) {
         @include column(6);
       }
+
       // first child is the zip
       &:first-child {
         @include column(12);
         @include last;
+
         @include breakpoint($bp-s) {
           @include column(3);
         }
       }
+
       // select is the state
       // .state may be a text field for certain countries
       &.select, .state {
         @include column(5);
         @include last;
+
         @include breakpoint($bp-s) {
           @include column(3);
           @include last;

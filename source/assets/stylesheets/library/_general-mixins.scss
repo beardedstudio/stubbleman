@@ -148,3 +148,13 @@
     }
   }
 }
+
+// remove the "spinner" from number fields
+@mixin remove-spinners {
+  appearance: none;
+  -moz-appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
