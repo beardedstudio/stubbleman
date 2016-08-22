@@ -38,8 +38,6 @@
 #   end
 # end
 
-activate :patterns
-
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
