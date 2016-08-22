@@ -186,7 +186,7 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
   @include grid-inset;
 }
 
-/////Below is a quick way to make a perfect column grid
+/////Below I've made a quick way to make a perfect column grid
 //using the mixin column-grid.
 //You can only use this with layouts of 2, 3, 4, or 6 columns.
 
