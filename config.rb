@@ -38,8 +38,6 @@
 #   end
 # end
 
-activate :patterns
-
 # Reload the browser automatically whenever files change
 configure :development do
   activate :livereload
@@ -50,6 +48,7 @@ set :haml, { :ugly => true, :format => :html5 }
 set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
 set :images_dir, 'assets/images'
+set :grunticon_dir, 'assets/grunticon/production'
 
 # Add bower's directory to sprockets asset path
 after_configuration do
