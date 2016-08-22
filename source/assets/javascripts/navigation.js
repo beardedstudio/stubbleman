@@ -14,27 +14,24 @@ var $primaryTrigger = $('.primary-trigger'),
 // toggle all visibility identifiers for given menu trigger
 function toggleTriggerVisibility(trigger) {
   trigger.toggleClass('is-active');
-  trigger.attr("aria-hidden", (!trigger.hasClass('is-active')).toString());
 };
 
 // toggle all visibility identifiers for given menu
 function toggleMenuVisibility(menu) {
   menu.toggleClass('is-visible');
-  menu.attr("aria-hidden", (!menu.hasClass('is-visible')).toString());
+  menu.attr("aria-expanded", menu.hasClass('is-visible').toString());
 }
 
 // restore original menu state
 function resetMenu(menu) {
   menu.removeClass('is-visible')
-    .attr('aria-hidden', 'true')
+    .attr('aria-expanded', 'false')
     .removeAttr('style');
 };
 
 // Restore original menu trigger state
 function resetTrigger(trigger) {
-  trigger.removeClass('is-active')
-    .attr('aria-hidden', 'true')
-    .removeAttr('style');
+  trigger.removeClass('is-active').removeAttr('style');
 };
 
 // Toggle menu visibility on menu trigger click
@@ -81,16 +78,20 @@ function toggleUtilityMenu() {
 jRes.addFunc({
   breakpoint: 'nav',
   enter: function(){
-    $utilityMenu.attr('aria-hidden', true);
-    $primaryMenu.attr('aria-hidden', true);
+    $utilityMenu.attr('aria-expanded', false);
+    $primaryMenu.attr('aria-expanded', false);
+    $utilityTrigger.attr('aria-hidden', false);
+    $primaryTrigger.attr('aria-hidden', false);
   },
   exit: function(){
     resetTrigger($utilityTrigger);
     resetMenu($utilityMenu);
     resetMenu($primaryMenu);
     resetTrigger($primaryTrigger);
-    $utilityMenu.attr('aria-hidden', false);
-    $primaryMenu.attr('aria-hidden', false);
+    $utilityTrigger.attr('aria-hidden', true);
+    $primaryTrigger.attr('aria-hidden', true);
+    $utilityMenu.attr('aria-expanded', true);
+    $primaryMenu.attr('aria-expanded', true);
   }
 });
 

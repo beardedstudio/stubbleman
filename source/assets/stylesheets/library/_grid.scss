@@ -20,11 +20,11 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
   max-width: $max-width;
   *zoom: 1;
 
-  @include breakpoint($bp-s) {
+  @include breakpoint($breakpoint-s) {
     width: 85%;
   }
 
-  @include breakpoint($bp-l) {
+  @include breakpoint($breakpoint-l) {
     width: 95%;
   }
 
@@ -191,10 +191,10 @@ $grid_width: ((($column_width+($gutter_width))*$columns)-$gutter_width);
 //You can only use this with layouts of 2, 3, 4, or 6 columns.
 
 @mixin last-column($num) {
-  @if $num == 2 { 
+  @if $num == 2 {
     @include last-col6;
   }
-  @else if $num == 3 { 
+  @else if $num == 3 {
     @include last-col4;
   }
   @else if $num == 4 {
